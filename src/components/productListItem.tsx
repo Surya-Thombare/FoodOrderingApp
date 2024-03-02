@@ -13,14 +13,9 @@ type ProductListItemProps = {
 
 const ProductListItem = ({ product }: ProductListItemProps) => {
   // const RouteId: string = `/${product.id}`;
-  const segments = useSegments();
+  const segments: string[] = useSegments();
   return (
-    <Link 
-      // href={(`/${product.id}`) as Href} 
-      href={`/menu/${product.id}`}
-      // href={{ pathname: "[id]", params: { id: product.id } } }
-      asChild
-    >
+    <Link href={`/${segments[0]}/menu/${product.id}`} asChild>
       <Pressable style={styles.container}>
         <Image
           source={{ uri: product.image || defaultPizzaImage }}
