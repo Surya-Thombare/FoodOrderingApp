@@ -6,13 +6,36 @@ import { StyleSheet, TextInput } from "react-native";
 const CreateProductScreen = () => {
   const [name, setName] = useState("");
   const [price, setPrice] = useState("");
+  const [error, setError] = useState("");
 
   const resetFields = () => {
-    setName('');
-    setPrice('');
-  }
+    setName("");
+    setPrice("");
+  };
+
+  const validateInput = () => {
+    setError("");
+
+    if (!name) {
+      setError("Please enter name");
+      return false;
+    }
+    if (!price) {
+      setError("Please enter price");
+      return false;
+    }
+
+    if (isNaN(parseFloat(price))) {
+      setError("Price is not a number");
+      return false;
+    }
+    return true;
+  };
 
   const onCreate = () => {
+    if (!validateInput()) {
+      return;
+    }
     console.warn("creating product");
 
     resetFields();
@@ -35,6 +58,7 @@ const CreateProductScreen = () => {
         style={styles.input}
         keyboardType="numeric"
       />
+      <Text style={{ color: "red" }}>{error}</Text>
       <Button text="create" onPress={onCreate} />
     </View>
   );
