@@ -5,12 +5,13 @@ import Colors from "@/constants/Colors";
 import { useState } from "react";
 import { Image, StyleSheet, TextInput } from "react-native";
 import * as ImagePicker from 'expo-image-picker';
+import { Stack } from "expo-router";
 
 const CreateProductScreen = () => {
   const [name, setName] = useState("");
   const [price, setPrice] = useState("");
   const [error, setError] = useState("");
-  const [image, setImage] = useState('');
+  const [image, setImage] = useState<string | null>('');
 
   const resetFields = () => {
     setName("");
@@ -61,7 +62,8 @@ const CreateProductScreen = () => {
   };
   return (
     <View style={styles.container}>
-        <Image source={{ uri: defaultPizzaImage}} style={styles.image} />
+      <Stack.Screen  options={{ title: 'Create Product'}} />
+        <Image source={{ uri: image || defaultPizzaImage}} style={styles.image} />
         <Text onPress={pickImage} style={styles.textButton}>Select Image</Text>
       <Text style={styles.label}>Name</Text>
       <TextInput
