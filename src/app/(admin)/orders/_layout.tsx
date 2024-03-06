@@ -9,9 +9,10 @@ export default function MenuStack () {
             
         }}>
             <Stack.Screen
-                name="index"
+                name="list"
                 options={{
-                    title: "Orders"
+                    // title: "Orders"
+                    headerShown: false,
                 }}
             />
         </Stack>
