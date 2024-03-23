@@ -6,6 +6,7 @@ type ButtonProps = {
   text: string;
 } & React.ComponentPropsWithoutRef<typeof Pressable>;
 
+
 const Button = forwardRef<View | null, ButtonProps>(
   ({ text, ...pressableProps }, ref) => {
     return (
